@@ -2,7 +2,7 @@ import { LockOutlined } from '@mui/icons-material';
 import { Button, Grid,TextField, Paper, Avatar, FormControlLabel, Checkbox, Typography, Link } from '@mui/material';
 import React, { useEffect,useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import {auth,signInWithGoogle,signUpNow} from '../config/firebase'
+import {auth,emailPasswordSignIn,signInWithGoogle,signUpNow} from '../config/firebase'
 
 export default function Login() {
     const [userEmail,setUserEmail] = useState("");
@@ -15,9 +15,9 @@ export default function Login() {
         });
     },[])
 
-    const signInUser = (email,passowrd) => 
+    const signInUser = async(email,passowrd) => 
     {
-        signUpNow(email,passowrd);
+        emailPasswordSignIn(email,passowrd)
         alert("User created");
     }
 
