@@ -2,7 +2,7 @@ import { LockOutlined } from '@mui/icons-material';
 import { Button, Grid,TextField, Paper, Avatar, FormControlLabel, Checkbox, Typography, Link } from '@mui/material';
 import React, { useEffect,useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import {auth,signInWithGoogle,signUpNow} from '../config/firebase'
+import {auth,emailPasswordSignIn,signInWithGoogle,signUpNow} from '../config/firebase'
 
 export default function Login() {
     const [userEmail,setUserEmail] = useState("");
@@ -15,10 +15,16 @@ export default function Login() {
         });
     },[])
 
-    const signInUser = (email,passowrd) => 
+
+    const signInUser = async(email,passowrd) => 
     {
-        signUpNow(email,passowrd);
+        emailPasswordSignIn(email,passowrd)
         alert("User created");
+    }
+
+    const googleSignedIn = async() => {
+        await signInWithGoogle(navigate)
+        await console.log("hello")
     }
 
     const paperStyle = {
@@ -83,7 +89,7 @@ export default function Login() {
                     <Typography>
                        {/* ------- Or connect with -------- */}
                     </Typography>
-                    <Button onClick={()=>signInWithGoogle()}>
+                    <Button onClick={()=>googleSignedIn()}>
                         <Avatar alt="Remy Sharp" src="https://cdn-icons-png.flaticon.com/512/281/281764.png" />
                     </Button>
                 </Grid>
