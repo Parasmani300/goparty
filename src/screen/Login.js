@@ -15,10 +15,16 @@ export default function Login() {
         });
     },[])
 
+
     const signInUser = async(email,passowrd) => 
     {
         emailPasswordSignIn(email,passowrd)
         alert("User created");
+    }
+
+    const googleSignedIn = async() => {
+        await signInWithGoogle(navigate)
+        await console.log("hello")
     }
 
     const paperStyle = {
@@ -83,7 +89,7 @@ export default function Login() {
                     <Typography>
                        {/* ------- Or connect with -------- */}
                     </Typography>
-                    <Button onClick={()=>signInWithGoogle()}>
+                    <Button onClick={()=>googleSignedIn()}>
                         <Avatar alt="Remy Sharp" src="https://cdn-icons-png.flaticon.com/512/281/281764.png" />
                     </Button>
                 </Grid>

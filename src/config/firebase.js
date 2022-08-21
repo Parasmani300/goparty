@@ -18,21 +18,23 @@ const db = getDatabase();
 const auth = getAuth();
 const googleProvider = new GoogleAuthProvider();
 
-const signInWithGoogle = () =>{
+const signInWithGoogle = (navigate) =>{
     signInWithPopup(auth,googleProvider)
     .then((res) =>{
         console.log(res.user);
+        navigate("home")
     })
     .catch((error) => {
         console.log(error);
     })
 }
 
-const emailPasswordSignIn = (email,password) => 
+const emailPasswordSignIn = (email,password,navigate) => 
 {
     signInWithEmailAndPassword(auth,email,password)
     .then((res) =>{
         console.log("SIgne In " + res.user);
+        navigate("home");
     })
     .catch((error) =>{
         console.log(error);
